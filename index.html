@@ -1,345 +1,1969 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AllPanel 7 ID</title>
+
+<title>3D FORCE — Future Fitness</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,sans-serif;
+}
+
+:root{
+    --blue:#00aaff;
+    --cyan:#00eaff;
+    --purple:#6c4dff;
+    --black:#03050b;
+    --dark:#080d17;
+    --card:rgba(13,21,35,.72);
+    --line:rgba(255,255,255,.09);
+    --text:#f4f8ff;
+    --muted:#7f8da3;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    background:#042b23;
-    color:#fff;
-    overflow-x:auto;
+    background:var(--black);
+    color:var(--text);
+    font-family:Inter,sans-serif;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:999;
+    opacity:.05;
+    background-image:
+    linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);
+    background-size:100px 100px;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
 }
 
 .container{
-    display:flex;
-    min-height:100vh;
+    width:min(1200px,92%);
+    margin:auto;
 }
 
-.demo{
-    width:70%;
-    background:#111;
+/* BACKGROUND */
+
+.space{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-2;
 }
 
-iframe{
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.25;
+}
+
+.orb.one{
+    width:450px;
+    height:450px;
+    background:var(--blue);
+    top:5%;
+    left:-150px;
+}
+
+.orb.two{
+    width:400px;
+    height:400px;
+    background:var(--purple);
+    right:-150px;
+    top:45%;
+}
+
+.orb.three{
+    width:300px;
+    height:300px;
+    background:var(--cyan);
+    left:35%;
+    bottom:-150px;
+}
+
+/* NAV */
+
+nav{
+    position:fixed;
+    top:0;
     width:100%;
-    height:100vh;
-    border:none;
+    z-index:1000;
+    padding:20px 0;
+    background:rgba(3,5,11,.7);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
 }
 
-.right{
-    width:30%;
-    padding:30px 22px;
-    background:linear-gradient(180deg,#008f73,#043d33);
+.nav-inner{
     display:flex;
     align-items:center;
-    justify-content:center;
+    justify-content:space-between;
 }
 
-.box{
-    width:100%;
-    background:#07110f;
-    border:1px solid #00e8ad;
-    border-radius:22px;
-    padding:24px 18px;
-    text-align:center;
-    box-shadow:0 0 30px rgba(0,232,173,.35);
+.logo{
+    font-family:Orbitron,sans-serif;
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:2px;
 }
 
-.badge{
-    display:inline-block;
-    background:#00e8ad;
-    color:#001f18;
-    padding:10px 22px;
-    border-radius:30px;
-    font-weight:bold;
-    margin-bottom:16px;
+.logo span{
+    color:var(--cyan);
+}
+
+.nav-links{
+    display:flex;
+    gap:32px;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:#8995a8;
+}
+
+.nav-links a{
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--cyan);
+}
+
+.nav-btn{
+    padding:12px 20px;
+    border:1px solid rgba(0,234,255,.5);
+    background:rgba(0,234,255,.08);
+    color:var(--cyan);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:.3s;
+}
+
+.nav-btn:hover{
+    background:var(--cyan);
+    color:#001018;
+    box-shadow:0 0 30px rgba(0,234,255,.4);
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    padding-top:120px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.kicker{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--cyan);
+    font-family:Orbitron,sans-serif;
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.kicker:before{
+    content:"";
+    width:35px;
+    height:1px;
+    background:var(--cyan);
+    box-shadow:0 0 10px var(--cyan);
 }
 
 h1{
-    color:#00e8ad;
-    font-size:30px;
+    font-family:Orbitron,sans-serif;
+    font-size:clamp(55px,8vw,105px);
+    line-height:.88;
+    letter-spacing:-5px;
+    margin-top:25px;
     text-transform:uppercase;
-    margin-bottom:12px;
 }
 
-.sub{
-    color:#ddd;
-    line-height:1.6;
-    margin-bottom:18px;
-    font-size:16px;
-}
-
-.process{
-    text-align:left;
-    background:linear-gradient(180deg,#07110f,#06483b);
-    border:1px solid #00e8ad;
-    border-radius:16px;
-    padding:18px;
-    margin:18px 0;
-}
-
-.process h2{
-    color:#00e8ad;
-    font-size:20px;
-    margin-bottom:12px;
-    text-align:center;
-}
-
-.process h3{
-    color:#fff;
-    font-size:18px;
-    margin:16px 0 8px;
-}
-
-.process p,
-.process li{
-    color:#ddd;
-    font-size:15px;
-    line-height:1.6;
-}
-
-.process ol{
-    padding-left:20px;
-}
-
-.manual-whatsapp,
-.signup{
+h1 span{
     display:block;
-    background:#00e8ad;
-    color:#001f18;
-    text-decoration:none;
-    padding:15px;
-    border-radius:14px;
-    font-size:20px;
-    font-weight:bold;
-    text-align:center;
-    box-shadow:0 0 18px rgba(0,232,173,.4);
+    color:transparent;
+    -webkit-text-stroke:1px var(--cyan);
+    text-shadow:0 0 25px rgba(0,234,255,.2);
 }
 
-.manual-whatsapp{
-    margin:14px 0 8px;
+.hero-text{
+    color:var(--muted);
+    line-height:1.8;
+    max-width:530px;
+    margin-top:30px;
+    font-size:14px;
 }
 
-.signup{
-    margin-top:16px;
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:35px;
 }
 
-.manual-whatsapp:hover,
-.signup:hover{
-    background:#00c996;
+.btn{
+    padding:16px 25px;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    transition:.3s;
 }
 
-.features{
+.btn-main{
+    background:var(--cyan);
+    color:#001018;
+    box-shadow:0 0 35px rgba(0,234,255,.2);
+}
+
+.btn-main:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 40px rgba(0,234,255,.35);
+}
+
+.btn-line{
+    border:1px solid #334154;
+    color:#a8b5c7;
+}
+
+.btn-line:hover{
+    border-color:var(--cyan);
+    color:var(--cyan);
+}
+
+/* 3D SCENE */
+
+.scene{
+    height:590px;
+    position:relative;
+    perspective:1200px;
+}
+
+.scene-floor{
+    position:absolute;
+    width:650px;
+    height:650px;
+    left:50%;
+    top:55%;
+    transform:
+        translate(-50%,-50%)
+        rotateX(70deg)
+        translateZ(-100px);
+    background:
+        linear-gradient(rgba(0,234,255,.09) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,234,255,.09) 1px,transparent 1px);
+    background-size:50px 50px;
+    border:1px solid rgba(0,234,255,.1);
+    box-shadow:
+        0 0 80px rgba(0,170,255,.12);
+}
+
+.core{
+    position:absolute;
+    width:260px;
+    height:260px;
+    left:50%;
+    top:48%;
+    transform:
+        translate(-50%,-50%)
+        rotateX(18deg)
+        rotateY(-25deg);
+    transform-style:preserve-3d;
+    animation:coreFloat 6s ease-in-out infinite;
+}
+
+@keyframes coreFloat{
+    0%,100%{
+        transform:
+            translate(-50%,-50%)
+            rotateX(18deg)
+            rotateY(-25deg)
+            translateY(0);
+    }
+
+    50%{
+        transform:
+            translate(-50%,-50%)
+            rotateX(24deg)
+            rotateY(20deg)
+            translateY(-25px);
+    }
+}
+
+/* 3D CUBE */
+
+.cube{
+    width:180px;
+    height:180px;
+    position:absolute;
+    left:40px;
+    top:40px;
+    transform-style:preserve-3d;
+    animation:spinCube 12s linear infinite;
+}
+
+@keyframes spinCube{
+    from{
+        transform:rotateX(0deg) rotateY(0deg);
+    }
+    to{
+        transform:rotateX(360deg) rotateY(360deg);
+    }
+}
+
+.face{
+    position:absolute;
+    width:180px;
+    height:180px;
+    border:1px solid rgba(0,234,255,.65);
+    background:rgba(0,170,255,.06);
+    box-shadow:
+        inset 0 0 30px rgba(0,234,255,.1),
+        0 0 25px rgba(0,234,255,.08);
+}
+
+.front{
+    transform:translateZ(90px);
+}
+
+.back{
+    transform:rotateY(180deg) translateZ(90px);
+}
+
+.right{
+    transform:rotateY(90deg) translateZ(90px);
+}
+
+.left{
+    transform:rotateY(-90deg) translateZ(90px);
+}
+
+.top{
+    transform:rotateX(90deg) translateZ(90px);
+}
+
+.bottom{
+    transform:rotateX(-90deg) translateZ(90px);
+}
+
+/* CORE CENTER */
+
+.core-center{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) translateZ(120px);
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle,#fff 0,#00eaff 20%,#006eff 55%,transparent 70%);
+    box-shadow:
+        0 0 30px var(--cyan),
+        0 0 80px var(--blue),
+        0 0 120px rgba(0,234,255,.4);
+}
+
+.ring{
+    position:absolute;
+    left:50%;
+    top:50%;
+    border:1px solid var(--cyan);
+    border-radius:50%;
+    transform-style:preserve-3d;
+}
+
+.ring.one{
+    width:330px;
+    height:100px;
+    transform:
+        translate(-50%,-50%)
+        rotateX(70deg);
+    animation:ringOne 5s linear infinite;
+}
+
+.ring.two{
+    width:290px;
+    height:290px;
+    transform:
+        translate(-50%,-50%)
+        rotateY(70deg);
+    animation:ringTwo 7s linear infinite;
+}
+
+.ring.three{
+    width:380px;
+    height:140px;
+    transform:
+        translate(-50%,-50%)
+        rotateX(25deg)
+        rotateY(45deg);
+    border-color:rgba(108,77,255,.8);
+    animation:ringThree 8s linear infinite;
+}
+
+@keyframes ringOne{
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotateX(70deg)
+            rotateZ(360deg);
+    }
+}
+
+@keyframes ringTwo{
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotateY(70deg)
+            rotateZ(-360deg);
+    }
+}
+
+@keyframes ringThree{
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotateX(25deg)
+            rotateY(45deg)
+            rotateZ(360deg);
+    }
+}
+
+/* FLOATING INFO */
+
+.info-card{
+    position:absolute;
+    padding:16px 20px;
+    background:rgba(7,13,24,.75);
+    border:1px solid rgba(0,234,255,.2);
+    backdrop-filter:blur(15px);
+    box-shadow:0 20px 40px rgba(0,0,0,.3);
+    z-index:10;
+}
+
+.info-card small{
+    color:#68778d;
+    font-size:8px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.info-card strong{
+    display:block;
+    font-family:Orbitron;
+    font-size:24px;
+    margin-top:5px;
+    color:#fff;
+}
+
+.info-card.one{
+    top:90px;
+    left:0;
+    animation:floatOne 4s ease-in-out infinite;
+}
+
+.info-card.two{
+    right:0;
+    bottom:100px;
+    animation:floatTwo 5s ease-in-out infinite;
+}
+
+.info-card strong span{
+    color:var(--cyan);
+    font-size:11px;
+}
+
+@keyframes floatOne{
+    0%,100%{transform:translateY(0) translateZ(0);}
+    50%{transform:translateY(-15px) translateZ(30px);}
+}
+
+@keyframes floatTwo{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(15px);}
+}
+
+/* SECTIONS */
+
+section{
+    padding:120px 0;
+}
+
+.section-head{
+    max-width:650px;
+    margin-bottom:60px;
+}
+
+.section-number{
+    color:var(--cyan);
+    font-family:Orbitron;
+    font-size:10px;
+    letter-spacing:3px;
+    margin-bottom:15px;
+}
+
+h2{
+    font-family:Orbitron;
+    font-size:clamp(40px,6vw,70px);
+    line-height:.95;
+    letter-spacing:-3px;
+    text-transform:uppercase;
+}
+
+.section-head p{
+    color:var(--muted);
+    line-height:1.8;
+    margin-top:20px;
+}
+
+/* 3D CARDS */
+
+.card-grid{
     display:grid;
-    gap:12px;
-    margin:22px 0 18px;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    perspective:1000px;
 }
 
-.feature{
-    background:linear-gradient(90deg,#092a24,#06483b);
-    border:1px solid #00e8ad;
-    border-radius:14px;
-    padding:14px;
-    font-size:17px;
-    font-weight:bold;
+.three-card{
+    min-height:360px;
+    background:
+        linear-gradient(145deg,rgba(0,234,255,.08),transparent 45%),
+        var(--card);
+    border:1px solid var(--line);
+    padding:30px;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:.15s;
+    overflow:hidden;
 }
 
-.feature span{
-    color:#00e8ad;
+.three-card:before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:var(--blue);
+    filter:blur(80px);
+    opacity:.12;
+    right:-80px;
+    top:-80px;
 }
 
-.website-row{
+.three-card:hover{
+    border-color:rgba(0,234,255,.5);
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.4),
+        0 0 40px rgba(0,234,255,.06);
+}
+
+.card-number{
+    font-family:Orbitron;
+    color:#3e4b60;
+    font-size:40px;
+    font-weight:800;
+    transform:translateZ(30px);
+}
+
+.card-icon{
+    width:60px;
+    height:60px;
+    border:1px solid rgba(0,234,255,.35);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--cyan);
+    font-size:25px;
+    margin-top:50px;
+    transform:translateZ(45px);
+}
+
+.three-card h3{
+    font-family:Orbitron;
+    font-size:22px;
+    margin-top:22px;
+    transform:translateZ(35px);
+}
+
+.three-card p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.8;
+    margin-top:10px;
+    transform:translateZ(25px);
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+}
+
+.stat{
+    background:#070b13;
+    padding:45px 25px;
+    text-align:center;
+}
+
+.stat strong{
+    font-family:Orbitron;
+    font-size:48px;
+    color:var(--cyan);
+    text-shadow:0 0 20px rgba(0,234,255,.2);
+}
+
+.stat span{
+    display:block;
+    color:#66758a;
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-top:10px;
+}
+
+/* PERFORMANCE */
+
+.performance{
+    background:
+        linear-gradient(rgba(0,234,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,234,255,.025) 1px,transparent 1px);
+    background-size:70px 70px;
+}
+
+.performance-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    align-items:center;
+}
+
+.performance-panel{
+    background:rgba(9,16,28,.85);
+    border:1px solid var(--line);
+    padding:35px;
+    min-height:400px;
+    position:relative;
+}
+
+.panel-top{
     display:flex;
     justify-content:space-between;
-    gap:10px;
-    margin-top:18px;
-    font-weight:bold;
-    flex-wrap:wrap;
+    align-items:center;
 }
 
-.website-row a{
-    text-decoration:none;
-    word-break:break-word;
+.panel-top h3{
+    font-family:Orbitron;
+    font-size:18px;
 }
 
-.website,
-.whatsapp-small{
-    color:#00e8ad;
+.live{
+    color:var(--cyan);
+    font-size:8px;
+    letter-spacing:2px;
 }
 
-.trust{
-    margin-top:18px;
-    color:#ccc;
-    line-height:1.7;
+.big-score{
+    text-align:center;
+    margin:45px 0;
 }
 
-.footer{
-    margin-top:20px;
-    color:#888;
+.big-score strong{
+    font-family:Orbitron;
+    font-size:80px;
+    color:var(--cyan);
+    text-shadow:0 0 30px rgba(0,234,255,.2);
+}
+
+.big-score span{
+    display:block;
+    color:#69788d;
+    font-size:9px;
+    letter-spacing:3px;
+}
+
+.progress{
+    height:5px;
+    background:#1a2433;
+    overflow:hidden;
+}
+
+.progress i{
+    display:block;
+    height:100%;
+    width:82%;
+    background:linear-gradient(90deg,var(--blue),var(--cyan));
+    box-shadow:0 0 15px var(--cyan);
+}
+
+.metric-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.metric{
+    background:#0b111c;
+    border:1px solid var(--line);
+    padding:25px;
+}
+
+.metric small{
+    color:#68778d;
+    font-size:8px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.metric strong{
+    display:block;
+    font-family:Orbitron;
+    font-size:28px;
+    margin-top:10px;
+}
+
+/* PRICING */
+
+.pricing{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.price-card{
+    background:rgba(9,15,26,.8);
+    border:1px solid var(--line);
+    padding:35px;
+    position:relative;
+    transition:.4s;
+}
+
+.price-card:hover{
+    transform:translateY(-10px);
+}
+
+.price-card.featured{
+    border-color:var(--cyan);
+    box-shadow:0 0 50px rgba(0,234,255,.08);
+}
+
+.popular{
+    position:absolute;
+    top:0;
+    right:0;
+    background:var(--cyan);
+    color:#001018;
+    padding:8px 13px;
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.price-card h3{
+    font-family:Orbitron;
+    font-size:22px;
+}
+
+.price{
+    font-family:Orbitron;
+    font-size:52px;
+    margin:25px 0;
+}
+
+.price span{
+    color:#65748a;
+    font-family:Inter;
+    font-size:10px;
+}
+
+.price-card ul{
+    list-style:none;
+    border-top:1px solid var(--line);
+    padding-top:18px;
+}
+
+.price-card li{
+    padding:9px 0;
+    color:#8290a3;
     font-size:12px;
 }
 
-/* MOBILE — Laptop jaisa same layout */
-@media(max-width:768px){
+.price-card li:before{
+    content:"◆";
+    color:var(--cyan);
+    font-size:6px;
+    margin-right:10px;
+}
 
-    body{
-        overflow-x:auto;
+.price-btn{
+    display:block;
+    margin-top:25px;
+    text-align:center;
+    padding:14px;
+    border:1px solid #263447;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.featured .price-btn{
+    background:var(--cyan);
+    color:#001018;
+    border-color:var(--cyan);
+}
+
+/* TRAINERS */
+
+.trainers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.trainer{
+    background:#090f19;
+    border:1px solid var(--line);
+    overflow:hidden;
+    transition:.4s;
+}
+
+.trainer:hover{
+    transform:translateY(-8px) rotateX(2deg);
+    border-color:rgba(0,234,255,.4);
+}
+
+.trainer-visual{
+    height:280px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        radial-gradient(circle,#163b55,transparent 25%),
+        linear-gradient(135deg,#0c1421,#060a11);
+    position:relative;
+    font-family:Orbitron;
+    font-size:75px;
+    color:#20384d;
+}
+
+.trainer-visual:after{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    border:1px solid rgba(0,234,255,.3);
+    border-radius:50%;
+    animation:spin 8s linear infinite;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg);}
+}
+
+.trainer-info{
+    padding:22px;
+}
+
+.trainer-info h3{
+    font-family:Orbitron;
+    font-size:18px;
+}
+
+.trainer-info p{
+    color:var(--cyan);
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-top:6px;
+}
+
+/* CTA */
+
+.cta{
+    position:relative;
+    padding:90px;
+    background:
+        linear-gradient(120deg,rgba(0,234,255,.1),transparent 45%),
+        #08111e;
+    border:1px solid rgba(0,234,255,.25);
+    overflow:hidden;
+    text-align:center;
+}
+
+.cta:before{
+    content:"3D";
+    position:absolute;
+    font-family:Orbitron;
+    font-size:300px;
+    font-weight:900;
+    color:rgba(0,234,255,.025);
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+.cta h2{
+    position:relative;
+}
+
+.cta p{
+    position:relative;
+    color:#77869a;
+    max-width:550px;
+    margin:20px auto 30px;
+    line-height:1.8;
+}
+
+/* CONTACT */
+
+.contact{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+}
+
+.contact-text h2{
+    margin-bottom:20px;
+}
+
+.contact-text p{
+    color:var(--muted);
+    line-height:1.8;
+    max-width:450px;
+}
+
+.details{
+    margin-top:30px;
+}
+
+.detail{
+    padding:15px 0;
+    border-bottom:1px solid var(--line);
+    color:#718096;
+    font-size:12px;
+}
+
+.detail strong{
+    color:#fff;
+    display:inline-block;
+    width:90px;
+}
+
+form{
+    background:rgba(9,15,26,.8);
+    border:1px solid var(--line);
+    padding:30px;
+}
+
+input,
+textarea{
+    width:100%;
+    background:#060b13;
+    border:1px solid #1d2b3e;
+    color:#fff;
+    padding:15px;
+    margin-bottom:12px;
+    outline:none;
+    font-family:Inter;
+    font-size:12px;
+}
+
+input:focus,
+textarea:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 20px rgba(0,234,255,.06);
+}
+
+textarea{
+    height:130px;
+    resize:none;
+}
+
+form button{
+    width:100%;
+    border:0;
+    padding:16px;
+    background:var(--cyan);
+    color:#001018;
+    font-weight:900;
+    letter-spacing:1px;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    padding:30px 0;
+    border-top:1px solid var(--line);
+    color:#526175;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+}
+
+/* REVEAL */
+
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+    .nav-links{
+        display:none;
     }
 
-    .container{
-        width:1200px;
-        min-width:1200px;
-        flex-direction:row;
+    .hero-grid,
+    .performance-box,
+    .contact{
+        grid-template-columns:1fr;
     }
 
-    .demo{
-        width:70%;
+    .scene{
+        max-width:650px;
+        margin:auto;
     }
 
-    .right{
-        width:30%;
-        padding:25px 18px;
+    .card-grid,
+    .pricing,
+    .trainers{
+        grid-template-columns:1fr;
     }
 
-    iframe{
-        height:100vh;
-        min-height:700px;
+    .price-card.featured{
+        transform:none;
     }
 
-    h1{
-        font-size:28px;
+    .stats{
+        grid-template-columns:1fr 1fr;
     }
 
-    .manual-whatsapp,
-    .signup{
-        font-size:19px;
+    .cta{
+        padding:60px 30px;
     }
 }
+
+@media(max-width:600px){
+
+    h1{
+        font-size:58px;
+        letter-spacing:-3px;
+    }
+
+    .scene{
+        height:470px;
+    }
+
+    .scene-floor{
+        width:450px;
+        height:450px;
+    }
+
+    .cube{
+        transform:scale(.75);
+    }
+
+    .info-card.one{
+        left:-10px;
+    }
+
+    .info-card.two{
+        right:-5px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .metric-grid{
+        grid-template-columns:1fr;
+    }
+
+    .cta{
+        padding:50px 20px;
+    }
+
+    .footer-inner{
+        display:block;
+    }
+
+    .footer-inner div:last-child{
+        margin-top:10px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="space">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+</div>
 
-    <div class="demo">
-        <iframe src="https://www.allpanel7.com/?code=MAHA1991"></iframe>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="container nav-inner">
+
+    <a href="#" class="logo">
+        3D<span>FORCE</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="#programs">Programs</a>
+        <a href="#performance">Performance</a>
+        <a href="#plans">Membership</a>
+        <a href="#trainers">Trainers</a>
     </div>
 
-    <div class="right">
+    <a href="#contact" class="nav-btn">
+        Join Now
+    </a>
 
-        <div class="box">
+</div>
 
-            <div class="badge">ALLPANEL7</div>
+</nav>
 
-            <h1>Get Your AllPanel7 ID</h1>
 
-            <p class="sub">
-                Choose the registration method that's most convenient for you and get started with AllPanel 7 today!
-            </p>
+<!-- HERO -->
 
-            <div class="process">
+<header class="hero">
 
-                <h2>Get Your AllPanel 7 ID – Your Choice!</h2>
+<div class="container hero-grid">
 
-                <h3>✅ Manual ID</h3>
+<div class="hero-content reveal">
 
-                <p>
-                    Click the <strong>"WhatsApp Now"</strong> button and our team will create your ID for you.
-                </p>
+    <div class="kicker">
+        Future Fitness System
+    </div>
 
-                <a class="manual-whatsapp"
-                   href="https://wa.me/+917980303785?text=Hello%20I%20want%20new%20manual%20ID"
-                   target="_blank">
-                    📲 WhatsApp Now
-                </a>
+    <h1>
+        ENTER
+        <span>THE 3D</span>
+        GYM.
+    </h1>
 
-                <h3>✅ Self-Registration</h3>
+    <p class="hero-text">
+        A next-generation fitness environment designed around
+        strength, movement and technology. Train inside an
+        experience built to push you beyond ordinary limits.
+    </p>
 
-                <p>
-                    Click the <strong>"Sign Up"</strong> button and follow these simple steps:
-                </p>
+    <div class="hero-buttons">
 
-                <ol>
-                    <li>Enter your mobile number.</li>
-                    <li>Create your username.</li>
-                    <li>Create your password and confirm it.</li>
-                    <li>The Signup Code is pre-filled as <strong>MAHA1991</strong>.</li>
-                    <li>Click <strong>"Sign Up"</strong> to complete your registration.</li>
-                </ol>
+        <a href="#plans" class="btn btn-main">
+            Start Training
+        </a>
 
-                <a class="signup"
-                   href="https://www.allpanel7.com/?code=MAHA1991"
-                   target="_blank">
-                    📝 Sign Up
-                </a>
+        <a href="#programs" class="btn btn-line">
+            Explore Programs
+        </a>
 
-            </div>
+    </div>
 
-            <div class="features">
+</div>
 
-                <div class="feature">
-                    Minimum Deposit:
-                    <span>₹100 Only</span>
-                </div>
 
-                <div class="feature">
-                    Welcome Bonus:
-                    <span>10%</span>
-                </div>
+<!-- 3D SCENE -->
 
-                <div class="feature">
-                    Auto and Manual Service:
-                    <span>Available</span>
-                </div>
+<div class="scene reveal">
 
-                <div class="feature">
-                    Quick Help:
-                    <span>24/7 Support Available</span>
-                </div>
+    <div class="scene-floor"></div>
 
-            </div>
+    <div class="core">
 
-            <div class="website-row">
+        <div class="cube">
 
-                <a class="website"
-                   href="https://www.allpanel7.com/?code=MAHA1991"
-                   target="_blank">
-                    🌐 www.allpanel7.com/?code=MAHA1991
-                </a>
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
 
-                <a class="whatsapp-small"
-                   href="https://wa.me/+917980303785"
-                   target="_blank">
-                    💬 WhatsApp
-                </a>
+        </div>
 
-            </div>
+        <div class="core-center"></div>
 
-            <div class="trust">
-                ✅ Trusted Manual Support<br>
-                ✅ Simple Process<br>
-                ✅ Fast Response
-            </div>
+        <div class="ring one"></div>
+        <div class="ring two"></div>
+        <div class="ring three"></div>
 
-            <div class="footer">
-                18+ Only | Play Responsibly | Follow Your Local Laws | T&amp;C Apply
-            </div>
+    </div>
 
+
+    <div class="info-card one">
+
+        <small>Current Power</small>
+
+        <strong>
+            92<span>%</span>
+        </strong>
+
+    </div>
+
+
+    <div class="info-card two">
+
+        <small>Members Online</small>
+
+        <strong>
+            247
+        </strong>
+
+    </div>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- PROGRAMS -->
+
+<section id="programs">
+
+<div class="container">
+
+<div class="section-head reveal">
+
+    <div class="section-number">
+        01 / PROGRAMS
+    </div>
+
+    <h2>
+        TRAIN IN
+        THREE DIMENSIONS.
+    </h2>
+
+    <p>
+        Every program is built to develop a stronger,
+        faster and more capable version of you.
+    </p>
+
+</div>
+
+
+<div class="card-grid">
+
+
+<div class="three-card tilt reveal">
+
+    <div class="card-number">01</div>
+
+    <div class="card-icon">↗</div>
+
+    <h3>POWER</h3>
+
+    <p>
+        Heavy strength training, progressive overload
+        and explosive movements designed to build
+        serious power.
+    </p>
+
+</div>
+
+
+<div class="three-card tilt reveal">
+
+    <div class="card-number">02</div>
+
+    <div class="card-icon">◉</div>
+
+    <h3>CONDITION</h3>
+
+    <p>
+        High-intensity sessions engineered to improve
+        endurance, cardiovascular capacity and recovery.
+    </p>
+
+</div>
+
+
+<div class="three-card tilt reveal">
+
+    <div class="card-number">03</div>
+
+    <div class="card-icon">△</div>
+
+    <h3>ATHLETIC</h3>
+
+    <p>
+        Sprinting, agility, mobility and functional
+        movement for complete athletic performance.
+    </p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section>
+
+<div class="container">
+
+<div class="stats reveal">
+
+    <div class="stat">
+        <strong>12K</strong>
+        <span>Members</span>
+    </div>
+
+    <div class="stat">
+        <strong>48</strong>
+        <span>Weekly Classes</span>
+    </div>
+
+    <div class="stat">
+        <strong>26</strong>
+        <span>Expert Trainers</span>
+    </div>
+
+    <div class="stat">
+        <strong>24/7</strong>
+        <span>Access</span>
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PERFORMANCE -->
+
+<section id="performance" class="performance">
+
+<div class="container">
+
+<div class="section-head reveal">
+
+    <div class="section-number">
+        02 / PERFORMANCE
+    </div>
+
+    <h2>
+        YOUR DATA.
+        YOUR POWER.
+    </h2>
+
+    <p>
+        Track every session and turn your workouts
+        into measurable progress.
+    </p>
+
+</div>
+
+
+<div class="performance-box">
+
+
+<div class="performance-panel reveal">
+
+    <div class="panel-top">
+
+        <h3>PERFORMANCE</h3>
+
+        <span class="live">
+            ● LIVE
+        </span>
+
+    </div>
+
+
+    <div class="big-score">
+
+        <strong>82</strong>
+
+        <span>
+            PERFORMANCE SCORE
+        </span>
+
+    </div>
+
+
+    <div class="progress">
+        <i></i>
+    </div>
+
+</div>
+
+
+<div class="metric-grid">
+
+    <div class="metric reveal">
+
+        <small>Calories</small>
+
+        <strong>742</strong>
+
+    </div>
+
+
+    <div class="metric reveal">
+
+        <small>Workout</small>
+
+        <strong>76M</strong>
+
+    </div>
+
+
+    <div class="metric reveal">
+
+        <small>Volume</small>
+
+        <strong>8.4K</strong>
+
+    </div>
+
+
+    <div class="metric reveal">
+
+        <small>Intensity</small>
+
+        <strong>92%</strong>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section id="plans">
+
+<div class="container">
+
+<div class="section-head reveal">
+
+    <div class="section-number">
+        03 / MEMBERSHIP
+    </div>
+
+    <h2>
+        CHOOSE
+        YOUR LEVEL.
+    </h2>
+
+</div>
+
+
+<div class="pricing">
+
+
+<div class="price-card reveal">
+
+    <h3>CORE</h3>
+
+    <div class="price">
+        $39 <span>/ MONTH</span>
+    </div>
+
+    <ul>
+        <li>24/7 Gym Access</li>
+        <li>Strength Equipment</li>
+        <li>Workout Library</li>
+        <li>Locker Access</li>
+    </ul>
+
+    <a href="#contact" class="price-btn">
+        Select Plan
+    </a>
+
+</div>
+
+
+<div class="price-card featured reveal">
+
+    <div class="popular">
+        MOST POPULAR
+    </div>
+
+    <h3>POWER</h3>
+
+    <div class="price">
+        $69 <span>/ MONTH</span>
+    </div>
+
+    <ul>
+        <li>Everything In Core</li>
+        <li>Unlimited Classes</li>
+        <li>Performance Tracking</li>
+        <li>Coach Review</li>
+    </ul>
+
+    <a href="#contact" class="price-btn">
+        Select Plan
+    </a>
+
+</div>
+
+
+<div class="price-card reveal">
+
+    <h3>ELITE</h3>
+
+    <div class="price">
+        $119 <span>/ MONTH</span>
+    </div>
+
+    <ul>
+        <li>Everything In Power</li>
+        <li>Personal Training</li>
+        <li>Nutrition Guidance</li>
+        <li>Priority Booking</li>
+    </ul>
+
+    <a href="#contact" class="price-btn">
+        Select Plan
+    </a>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TRAINERS -->
+
+<section id="trainers">
+
+<div class="container">
+
+<div class="section-head reveal">
+
+    <div class="section-number">
+        04 / TRAINERS
+    </div>
+
+    <h2>
+        MEET THE
+        ARCHITECTS.
+    </h2>
+
+    <p>
+        Our coaches combine science, experience and
+        relentless energy to help you perform better.
+    </p>
+
+</div>
+
+
+<div class="trainers">
+
+
+<div class="trainer reveal">
+
+    <div class="trainer-visual">
+        JD
+    </div>
+
+    <div class="trainer-info">
+
+        <h3>
+            JORDAN DAVIS
+        </h3>
+
+        <p>
+            Strength Specialist
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="trainer reveal">
+
+    <div class="trainer-visual">
+        MK
+    </div>
+
+    <div class="trainer-info">
+
+        <h3>
+            MAYA KHAN
+        </h3>
+
+        <p>
+            Performance Coach
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="trainer reveal">
+
+    <div class="trainer-visual">
+        RS
+    </div>
+
+    <div class="trainer-info">
+
+        <h3>
+            RYAN STONE
+        </h3>
+
+        <p>
+            Athletic Coach
+        </p>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section>
+
+<div class="container">
+
+<div class="cta reveal">
+
+    <h2>
+        BUILD A
+        <span>STRONGER</span>
+        VERSION OF YOU.
+    </h2>
+
+    <p>
+        Stop training randomly. Enter a smarter fitness
+        system built around performance and measurable results.
+    </p>
+
+    <a href="#contact" class="btn btn-main">
+        Start Your Journey
+    </a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="container contact">
+
+
+<div class="contact-text reveal">
+
+    <div class="section-number">
+        05 / CONTACT
+    </div>
+
+    <h2>
+        READY
+        TO ENTER?
+    </h2>
+
+    <p>
+        Book a free tour, meet our coaches and experience
+        the 3D FORCE training environment.
+    </p>
+
+
+    <div class="details">
+
+        <div class="detail">
+            <strong>LOCATION</strong>
+            88 Future Fitness Avenue
+        </div>
+
+        <div class="detail">
+            <strong>PHONE</strong>
+            +1 555 204 8899
+        </div>
+
+        <div class="detail">
+            <strong>EMAIL</strong>
+            hello@3dforce.com
+        </div>
+
+        <div class="detail">
+            <strong>HOURS</strong>
+            Open 24 Hours
         </div>
 
     </div>
 
 </div>
 
+
+<form id="contactForm" class="reveal">
+
+    <input
+        type="text"
+        placeholder="Your Name"
+        required
+    >
+
+    <input
+        type="email"
+        placeholder="Email Address"
+        required
+    >
+
+    <input
+        type="tel"
+        placeholder="Phone Number"
+    >
+
+    <textarea
+        placeholder="Tell us your fitness goal..."
+    ></textarea>
+
+    <button type="submit">
+        REQUEST FREE TOUR →
+    </button>
+
+</form>
+
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container footer-inner">
+
+    <div>
+        © 2026 3D FORCE FITNESS
+    </div>
+
+    <div>
+        ENTER. TRAIN. EVOLVE.
+    </div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* =========================================
+   3D CARD TILT
+========================================= */
+
+const cards =
+document.querySelectorAll(".tilt");
+
+cards.forEach(card => {
+
+    card.addEventListener("mousemove", e => {
+
+        const rect =
+        card.getBoundingClientRect();
+
+        const x =
+        e.clientX - rect.left;
+
+        const y =
+        e.clientY - rect.top;
+
+        const centerX =
+        rect.width / 2;
+
+        const centerY =
+        rect.height / 2;
+
+        const rotateX =
+        ((y - centerY) / centerY) * -8;
+
+        const rotateY =
+        ((x - centerX) / centerX) * 8;
+
+        card.style.transform =
+        `perspective(900px)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)
+         translateZ(15px)`;
+
+    });
+
+
+    card.addEventListener("mouseleave", () => {
+
+        card.style.transform =
+        "perspective(900px) rotateX(0) rotateY(0) translateZ(0)";
+
+    });
+
+});
+
+
+/* =========================================
+   MOUSE PARALLAX HERO
+========================================= */
+
+const scene =
+document.querySelector(".scene");
+
+document.addEventListener("mousemove", e => {
+
+    if(window.innerWidth < 900) return;
+
+    const x =
+    (window.innerWidth / 2 - e.clientX) / 35;
+
+    const y =
+    (window.innerHeight / 2 - e.clientY) / 35;
+
+    scene.style.transform =
+    `rotateY(${x}deg) rotateX(${y}deg)`;
+
+});
+
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+const reveal =
+document.querySelectorAll(".reveal");
+
+const observer =
+new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("active");
+
+        }
+
+    });
+
+},{
+    threshold:.12
+});
+
+reveal.forEach(item => {
+    observer.observe(item);
+});
+
+
+/* =========================================
+   CONTACT FORM
+========================================= */
+
+document
+.getElementById("contactForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    alert(
+        "Welcome to 3D FORCE! Your free tour request has been received."
+    );
+
+    this.reset();
+
+});
+
+</script>
+
 </body>
 </html>
+```
